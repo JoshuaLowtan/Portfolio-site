@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MPG Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #fafaff; }
+    .container { max-width: 500px; margin: auto; text-align: center; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    img { width: 100%; border-radius: 10px; margin-bottom: 20px; }
+    input, button { padding: 10px; margin: 10px; width: 80%; font-size: 1em; }
+    button { background: #6a0dad; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .result { margin-top: 20px; font-weight: bold; color: #6a0dad; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="../images/mpg_ai.png" alt="MPG Banner">
+    <h1>Miles Per Gallon Calculator</h1>
+    <input type="number" id="miles" placeholder="Miles Traveled"><br>
+    <input type="number" id="gallons" placeholder="Gallons Used"><br>
+    <button onclick="calculateMPG()">Calculate MPG</button>
+    <div class="result" id="result">Your MPG will appear here</div>
+  </div>
+  <script>
+    function calculateMPG() {
+      const miles = parseFloat(document.getElementById('miles').value);
+      const gallons = parseFloat(document.getElementById('gallons').value);
+      const result = document.getElementById('result');
+      if (isNaN(miles) || isNaN(gallons) || gallons === 0) {
+        result.textContent = "Please enter valid numbers.";
+        return;
+      }
+      const mpg = miles / gallons;
+      result.textContent = `Your MPG: ${mpg.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>

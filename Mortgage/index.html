@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mortgage Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f4ff; padding: 20px; }
+    .container { max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.08); }
+    h1 { color: #6a0dad; text-align: center; }
+    label, input, button { display: block; width: 90%; margin: 10px auto; font-size: 1em; padding: 10px; }
+    button { background: #6a0dad; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .result { text-align: center; font-weight: bold; margin-top: 20px; color: #6a0dad; }
+    img { width: 100%; border-radius: 10px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="../images/mortgage_ai.png" alt="Mortgage AI">
+    <h1>Mortgage Calculator</h1>
+    <label>Loan Amount ($): <input type="number" id="amount"></label>
+    <label>Interest Rate (% per year): <input type="number" id="rate"></label>
+    <label>Term (years): <input type="number" id="years"></label>
+    <button onclick="calculateMortgage()">Calculate Monthly Payment</button>
+    <div class="result" id="output">Your result will appear here.</div>
+  </div>
+  <script>
+    function calculateMortgage() {
+      const P = parseFloat(document.getElementById('amount').value);
+      const r = parseFloat(document.getElementById('rate').value) / 100 / 12;
+      const n = parseFloat(document.getElementById('years').value) * 12;
+      const output = document.getElementById('output');
+      if (!P || !r || !n) {
+        output.innerText = "Please enter valid numbers.";
+        return;
+      }
+      const monthly = (P * r) / (1 - Math.pow(1 + r, -n));
+      output.innerText = `Monthly Payment: $${monthly.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
